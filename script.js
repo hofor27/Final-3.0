@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial tasks as an array of objects
   const initialTasks = [
     {
+      id: 1,
       text: "Introdução",
       completed: false,
     },
     {
+      id: 2,
       text: "Example Task 2",
       completed: true,
     },
@@ -25,11 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load initial tasks
   initialTasks.forEach((task) => {
-    createTodoItem(task.text, task.completed);
+    createTodoItem(task.id, task.text, task.completed);
   });
 
   function addTodo(event) {
     event.preventDefault();
+
+    const newId = Date.now(); // Generate a unique ID (you can use a more robust method)
 
     const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');
@@ -49,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     trashButton.classList.add('trash-btn');
     todoDiv.appendChild(trashButton);
 
+    todoDiv.setAttribute('data-id', newId); // Set the ID as a data attribute
+
     todoList.appendChild(todoDiv);
     todoInput.value = '';
 
@@ -59,19 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function deleteCheck(event) {
     const item = event.target;
     const todo = item.parentElement;
+    const taskId = todo.getAttribute('data-id'); // Get the ID from the data attribute
 
     if (item.classList.contains('trash-btn')) {
       todo.remove();
 
-      // Remove the task from local storage
-      saveTasksToLocalStorage();
+      // Remove the task from local storage based on its ID
+      removeTaskFromLocalStorage(taskId);
     }
 
     if (item.classList.contains('check-btn')) {
       todo.classList.toggle('completed');
 
-      // Update task completion status in local storage
-      saveTasksToLocalStorage();
+      // Update task completion status in local storage based on its ID
+      updateTaskCompletionInLocalStorage(taskId);
     }
   }
 
@@ -106,7 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tasks = [];
 
     todos.forEach(function (todo) {
+      const taskId = todo.getAttribute('data-id');
       tasks.push({
+        id: taskId,
         text: todo.querySelector('.todo-item').innerText,
         completed: todo.classList.contains('completed'),
       });
@@ -119,11 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     tasks.forEach(function (task) {
-      createTodoItem(task.text, task.completed);
+      createTodoItem(task.id, task.text, task.completed);
     });
   }
 
-  function createTodoItem(text, completed) {
+  function createTodoItem(id, text, completed) {
     const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');
 
@@ -141,6 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
     trashButton.innerHTML = '<i class="fas fa-trash"></i>';
     trashButton.classList.add('trash-btn');
     todoDiv.appendChild(trashButton);
+
+    todoDiv.setAttribute('data-id', id); // Set the ID as a data attribute
 
     if (completed) {
       todoDiv.classList.add('completed');
