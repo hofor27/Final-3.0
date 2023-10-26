@@ -15,14 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const initialTasks = [
     {
       id: 1,
-      text: "Introdução",
+      text: "1. Fundamentos",
       completed: false,
     },
     {
       id: 2,
-      text: "Example Task 2",
-      completed: true,
+      text: "2. Eventos",
+      completed: false,
     },
+    {
+      id: 3,
+      text: "3. DOM",
+      completed: false,
+    },
+    {
+      id: 4,
+      text: "4. Salvar no navegador",
+      completed: false,
+    },
+
   ];
 
   // Load initial tasks
