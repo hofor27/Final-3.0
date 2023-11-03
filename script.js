@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = localStorage.getItem("username");
     alert(`Welcome, ${username}! You are logged in.`);
   }
+
+  // Logout button click event listener
   logoutButton.addEventListener("click", function () {
     // Clear data from localStorage and redirect to login.html
     localStorage.removeItem("isLoggedIn");
