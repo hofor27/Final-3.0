@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const logoutButton = document.getElementById("logoutButton");
   const todoInput = document.getElementById("todo-input");
   const todoButton = document.querySelector(".todo-button");
   const todoList = document.querySelector(".todo-list");
@@ -8,7 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!isLoggedIn || isLoggedIn !== "true") {
     // User is not logged in, redirect to login.html
     window.location.href = "login.html";
+  } else {
+    // User is logged in, retrieve username from localStorage
+    const username = localStorage.getItem("username");
+    alert(`Welcome, ${username}! You are logged in.`);
   }
+  logoutButton.addEventListener("click", function () {
+    // Clear data from localStorage and redirect to login.html
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("username");
+    window.location.href = "login.html";
+  });
 
   // Load tasks from local storage when the page loads
   loadTasksFromLocalStorage();

@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Validate username and password (add your validation logic here)
     if (username === "example" && password === "password") {
-      // Store login status in local storage
+      // Store login status in localStorage
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("username", username); // Store username in localStorage
 
       // Redirect to index.html
       window.location.href = "index.html";
