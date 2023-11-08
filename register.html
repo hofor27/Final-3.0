@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="login.css" />
-    <title>Login Page</title>
+    <title>Register Page</title>
   </head>
   <body>
     <div class="login-container">
-      <h2>Login</h2>
-      <form id="loginForm">
+      <h2>Register</h2>
+      <form id="registerForm">
         <div class="input-group">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" required />
@@ -18,14 +18,22 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
         </div>
+        <div class="input-group">
+          <label for="confirm password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="password"
+            required
+          />
+        </div>
         <div class="captcha-container">
           <input type="checkbox" name="" id="" />
           <p>Are you human</p>
         </div>
-        <p>Want to <a href="./register.html"> sign up? </a></p>
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
     </div>
   </body>
-  <script src="login.js"></script>
+  <script src="register.js"></script>
 </html>
