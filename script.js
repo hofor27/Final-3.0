@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // User is logged in, retrieve username from localStorage
     const username = localStorage.getItem("username");
     alert(`Welcome, ${username}! You are logged in.`);
+
+    // Load tasks from localStorage
+    loadTasksFromLocalStorage();
   }
 
   // Logout button click event listener
