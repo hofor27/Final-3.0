@@ -4,12 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
   loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // For demo purposes, assume authentication is successful
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Validate username and password (add your validation logic here)
-    if (username === "example" && password === "password") {
+    // Retrieve user data from localStorage
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+
+    // Validate username and password
+    if (username === storedUsername && password === storedPassword) {
       // Store login status in localStorage
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("username", username); // Store username in localStorage
