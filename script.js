@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   logoutButton.addEventListener("click", function () {
     // Clear data from localStorage and redirect to login.html
     localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("username");
     window.location.href = "login.html";
   });
 
